@@ -1,0 +1,19 @@
+services:
+  azureFunction:
+    image: azurefunction
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        IS_CONSOLE_LOGGING_ENABLED: 'true'
+    ports:
+    - '7777:8080'
+    environment:
+      - 'ASPNETCORE_ENVIRONMENT=Development'
+      - 'AZURE_FUNCTIONS_ENVIRONMENT=Development'
+      - 'ASPNETCORE_URLS=http://+:8080'
+      - 'FUNCTIONS_INPROC_NET8_ENABLED=1'
+      - 'FUNCTIONS_WORKER_RUNTIME=dotnet'
+      - 'AzureWebJobsStorage=UseDevelopmentStorage=true'
+
+
